@@ -1,0 +1,143 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[2]:
+
+
+import pandas as pd
+import numpy as np
+import os
+
+
+# In[3]:
+
+
+path = '../04. data/'
+os.listdir(path)
+
+
+# In[4]:
+
+
+metadata = pd.read_csv(path + 'metadata.csv')
+
+mf = pd.read_csv(path + 'mf_test.csv', header=None)
+march = pd.read_csv(path+ 'recommend_march.csv', header=None)
+follow = pd.read_csv(path + 'follow.csv', header=None)
+wr = pd.read_csv(path + 'wr.csv', header=None)
+
+coldstarter = pd.read_csv(path + 'cold_starter_id.csv')
+
+
+# In[45]:
+
+
+def cleaning(rec):
+    rec['id'] = rec[0].apply(lambda x: str(x).split(' ')[0])
+    rec['recommend'] = rec[0].apply(lambda x: str(x).split(' ')[1:])
+    return rec.iloc[:, 1:]
+
+
+# In[46]:
+
+
+mf = cleaning(mf)
+march = cleaning(march)
+follow = cleaning(follow)
+wr = cleaning(wr)
+
+
+# In[47]:
+
+
+mf['submit']=''
+for idx in range(len(mf)):
+    
+    a = march.loc[idx, 'recommend']
+    b = mf.loc[idx, 'recommend'][:20]
+    c = follow.loc[idx, 'recommend']
+    d = wr.loc[idx, 'recommend'][:20]
+
+    recommend_list = []
+    recommend_list.extend([a[0]])
+    a = a[1:]
+
+    while True:
+        try:
+            recommend_list.extend(c[:2])
+            c = c[2:]
+            recommend_list.extend(b[:2])
+            b = b[2:]
+        except:
+            pass
+        if len(c)+len(b)==0:
+            break
+            
+    recommend_list = pd.Series(recommend_list).unique().tolist()
+    
+    recommend_list3 = []
+    while True:
+        try:
+            recommend_list3.extend(recommend_list[:2])
+            recommend_list = recommend_list[2:]
+            recommend_list3.extend(d[:2])
+            d = d[2:]
+        except:
+            pass
+        if len(recommend_list)+len(d)==0:
+            break
+            
+    recommend_list = pd.Series(recommend_list3).unique().tolist()
+
+    recommend_list2 = []
+    while True:
+        try:
+            recommend_list2.extend(recommend_list[:2])
+            recommend_list = recommend_list[2:]
+            recommend_list2.extend(a[:2])
+            a = a[2:]
+        except:
+            pass
+        if len(recommend_list2)>=100:
+            break
+    
+    recommend_list2 = pd.Series(recommend_list2).unique().tolist()[:80]
+    mf.loc[idx, 'submit'] = recommend_list2
+
+
+# In[48]:
+
+
+rec_list = np.unique([j for i in mf['submit'] for j in i])
+rec_list_market = metadata['id'][~metadata['id'].isin(rec_list)].unique()
+
+
+# In[50]:
+
+
+import random
+random.seed(42)
+random.shuffle(rec_list_market)
+for idx in range(len(mf)):
+    recommend_list = mf.loc[idx, 'submit']
+    recommend_list.extend(rec_list_market[:20].tolist())
+    rec_list_market = rec_list_market[20:]
+    mf.loc[idx, 'submit'] = recommend_list
+
+
+# In[54]:
+
+
+dev = mf
+dev = dev.drop(columns=['recommend']).rename(columns={'submit':'recommend'})
+dev['submit'] = dev['id'] + ' ' + dev['recommend'].apply(lambda x: ' '.join(x))
+dev['submit'].to_csv(path + 'inference/recommend.csv', index=False)
+print('100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(
+    sum(dev['submit'].apply(lambda x: len(x.split(' ')))==101), len(np.unique([j for i in dev['recommend'] for j in i]))))
+
+
+# In[ ]:
+
+
+
+
