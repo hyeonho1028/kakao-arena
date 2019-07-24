@@ -17,23 +17,8 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import tqdm
 
-
-def seed_everything(seed):
-    random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    np.random.seed(seed)
-#     torch.manual_seed(seed)
-#     torch.cuda.manual_seed(seed)
-#     torch.backends.cudnn.deterministic = True
-
-SEED = 42
-seed_everything(SEED)
-
-N_FOLDS = 5
-
-
-# # data load
 
 # In[2]:
 
@@ -62,32 +47,16 @@ metadata = pd.merge(metadata, magazine.rename(columns={'id':'magazine_id'}), how
 metadata['reg_ts'] = metadata['reg_ts'].apply(lambda x: int(datetime.datetime.fromtimestamp(x/1000).strftime('%Y%m%d')))
 
 
-# # basic preprocess
-
-# In[3]:
-
-
 # metadata에 존재하는 작품만
 read_raw = read_raw[read_raw['article_id'].isin(metadata['id'].unique())].reset_index(drop=True)
 
 # 2월 18일 이후의 read data만
 read_raw2 = read_raw[read_raw['dt']>=20190224].reset_index(drop=True)
 
-# read data 중 5개 이상 글을 소비한 유저만
-# read_raw2 = read_raw2[read_raw2['user_id'].isin(read_raw2.groupby('user_id')['dt'].count()[read_raw2.groupby('user_id')['dt'].count() > 4].index)].reset_index(drop=True)
-
-# popular agg data
-# read_raw4 = read_raw2[~((read_raw2['article'].isin(read_raw2['article'].value_counts().head(5).index)) & (read_raw2['dt']<=20190220))].reset_index(drop=True)
-
-# # read data 중 unique
-# read_raw3 = read_raw[['user_id', 'article_id']].drop_duplicates()
 
 # # metadata 18일 이후와 3월 15일 이전으로
 metadata['article'] = metadata['user_id'].astype(str) +'_'+metadata['magazine_tag_list'].astype(str)
 metadata2 = metadata[(metadata['reg_ts']>=20190301) & (metadata['reg_ts']<20190315)].reset_index(drop=True)
-
-# # dev data에 following data 추가
-# dev2 = pd.merge(dev, user[['following_list', 'id']], how='left', on='id')
 
 user2 = user[user['id'].isin(test['id'])].reset_index(drop=True)
 
@@ -104,7 +73,7 @@ popular_list = read_raw3['article'].value_counts()[2:].index
 
 
 test['recommend']=''
-for idx in tqdm_notebook(range(len(test))):
+for idx in range(len(test)):
     user_id = pd.Series(test.loc[idx, 'id'])
     
     follow = user2.loc[user2['id'].isin(user_id), 'following_list']
@@ -141,10 +110,4 @@ test['submit'].to_csv('data/inferencefile/recommend.csv', index=False)
 print('100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(
     sum(test['submit'].apply(lambda x: len(x.split(' ')))==101), len(np.unique([j for i in test['recommend'] for j in i]))))
 
-
-# In[8]:
-
-
-# version10을 보면 추천 이상하게 한거 있음
-# version4를 보면 옛날 코드가 있습니다.
 
