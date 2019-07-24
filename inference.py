@@ -12,7 +12,7 @@ import os
 # In[3]:
 
 
-path = '../04. data/'
+path = 'data/inferencefile/'
 os.listdir(path)
 
 
@@ -26,7 +26,6 @@ march = pd.read_csv(path+ 'recommend_march.csv', header=None)
 follow = pd.read_csv(path + 'follow.csv', header=None)
 wr = pd.read_csv(path + 'wr.csv', header=None)
 
-coldstarter = pd.read_csv(path + 'cold_starter_id.csv')
 
 
 # In[45]:
@@ -131,7 +130,9 @@ for idx in range(len(mf)):
 dev = mf
 dev = dev.drop(columns=['recommend']).rename(columns={'submit':'recommend'})
 dev['submit'] = dev['id'] + ' ' + dev['recommend'].apply(lambda x: ' '.join(x))
-dev['submit'].to_csv(path + 'inference/recommend.csv', index=False)
+dev['submit'].to_csv('data/inference/recommend.csv', index=False)
+
+
 print('100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(
     sum(dev['submit'].apply(lambda x: len(x.split(' ')))==101), len(np.unique([j for i in dev['recommend'] for j in i]))))
 
