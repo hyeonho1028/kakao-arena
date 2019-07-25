@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
 
 # In[6]:
 from collections import Counter
@@ -60,7 +58,10 @@ output_path = 'data/'
 
 # In[11]:
 
-
+print('data/users.csv 생성완료')
+print('data/dev.csv 생성완료')
+print('data/test.csv 생성완료')
+print('data/read.csv 생성완료')
 users.to_csv(output_path + 'users.csv', index=False)
 dev.to_csv(output_path + 'dev.csv', index=False)
 test.to_csv(output_path + 'test.csv', index=False)

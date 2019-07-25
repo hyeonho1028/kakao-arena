@@ -73,7 +73,7 @@ popular_list = read_raw3['article'].value_counts()[2:].index
 
 
 test['recommend']=''
-for idx in range(len(test)):
+for idx in tqdm.tqdm(range(len(test))):
     user_id = pd.Series(test.loc[idx, 'id'])
     
     follow = user2.loc[user2['id'].isin(user_id), 'following_list']
@@ -107,7 +107,7 @@ test['submit'].to_csv('data/inferencefile/recommend.csv', index=False)
 # In[7]:
 
 
-print('100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(
+print('3월아이템추천완료 \n100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(
     sum(test['submit'].apply(lambda x: len(x.split(' ')))==101), len(np.unique([j for i in test['recommend'] for j in i]))))
 
 
