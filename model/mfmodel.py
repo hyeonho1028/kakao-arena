@@ -84,7 +84,7 @@ dev = pd.merge(dev, users[['following_list', 'id']], how='left', on='id')
 # In[7]:
 
 
-metadata = pd.read_json('../input/kakao-arena-2nd-competition/metadata.json', lines=True)
+metadata = pd.read_json('readraw/kakao-arena-2nd-competition/metadata.json', lines=True)
 
 
 # In[8]:
