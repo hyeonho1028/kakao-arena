@@ -1,6 +1,6 @@
 # Description
 
-*bug발견
+*bug발견*
 
 *1.0 주의 train 모델 중 tqdm을 사용한 부분들이 잦은 에러가 발견되므로 수정중에 있습니다.*
 
