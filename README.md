@@ -4,11 +4,12 @@
 
 
 ---
-실행방법
+- 실행방법
 0. python train.py
 1. python inference.py
 ---
 0. train.py가 실행된 후 생성되는 파일
+   - 전처리파일들이 data/에 생성됩니다.
 1. inference.py가 실행된 후 생성되는 파일
    - 최종 예측 파일으로서 data/inference/recommend.csv가 생성됩니다.
 ---
