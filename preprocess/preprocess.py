@@ -16,7 +16,10 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 # In[7]:
 
 

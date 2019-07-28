@@ -7,7 +7,11 @@
 import pandas as pd
 import numpy as np
 import os
+<<<<<<< HEAD
 import tqdm
+=======
+
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 # In[3]:
 
@@ -19,12 +23,21 @@ os.listdir(path)
 # In[4]:
 
 
+<<<<<<< HEAD
 metadata = pd.read_csv(path + 'metadata_test.csv')
 
 mf = pd.read_csv('pretrained/mf_test.csv', header=None)
 march = pd.read_csv(path+ 'march_recommend_test.csv', header=None)
 follow = pd.read_csv(path + 'follow_test.csv', header=None)
 wr = pd.read_csv(path + 'wr_test.csv', header=None)
+=======
+metadata = pd.read_csv(path + 'metadata.csv')
+
+mf = pd.read_csv(path + 'mf_test.csv', header=None)
+march = pd.read_csv(path+ 'recommend_march.csv', header=None)
+follow = pd.read_csv(path + 'follow.csv', header=None)
+wr = pd.read_csv(path + 'wr.csv', header=None)
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 
 
@@ -50,7 +63,11 @@ wr = cleaning(wr)
 
 
 mf['submit']=''
+<<<<<<< HEAD
 for idx in tqdm.tqdm(range(len(mf))):
+=======
+for idx in range(len(mf)):
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
     
     a = march.loc[idx, 'recommend']
     b = mf.loc[idx, 'recommend'][:20]

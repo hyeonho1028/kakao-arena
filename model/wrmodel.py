@@ -193,7 +193,11 @@ for i in dev_dict:
 print('추천 완료')
 
     
+<<<<<<< HEAD
 f= open('data/wr.txt','w')
+=======
+f= open(path + 'inference/writer_48.txt','w')
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 rec1 =''
 for i in tqdm(test_list):
@@ -215,6 +219,7 @@ f.write(rec1)
 f.close()
 
 print('저장 완료')
+<<<<<<< HEAD
 
 
 
@@ -223,3 +228,5 @@ line=f.readlines()
 pd.DataFrame(line)[0].to_csv('data/inferencefile/wr_test.csv', index=False)
 
 
+=======
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c

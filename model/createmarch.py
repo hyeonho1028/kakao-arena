@@ -101,7 +101,11 @@ for idx in tqdm.tqdm(range(len(test))):
 
 
 test['submit'] = test['id'] + ' ' + test['recommend'].apply(lambda x: ' '.join(x))
+<<<<<<< HEAD
 test['submit'].to_csv('data/inferencefile/march_recommend_test.csv', index=False)
+=======
+test['submit'].to_csv('data/inferencefile/recommend.csv', index=False)
+>>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 
 # In[7]:
