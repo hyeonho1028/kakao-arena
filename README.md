@@ -48,7 +48,11 @@ https://www.kaggle.com/hyeonho/mf-based-popular
 ```
 ## **실행 방법**
 ​```bash
-$> python train.py
+default directory
+./kakao-arena/
+
+$> python train1.py
+$> python train2.py
 $> python inference.py
 ​```
 ```

@@ -221,6 +221,6 @@ print('저장 완료')
 
 f= open('data/wr.txt')
 line=f.readlines()
-pd.DataFrame(line)[0][:20].to_csv('data/wr_test.csv', index=False)
+pd.DataFrame(line)[0].to_csv('data/wr_test.csv', index=False)
 
 
