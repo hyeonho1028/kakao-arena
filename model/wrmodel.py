@@ -135,7 +135,8 @@ for i in tqdm(dev_dict):
     new=[]
     try:
         new.extend(dev_dict[i])
-        new.extend([x for x in itemlist3 if x not in test_history[i] and x not in dev_dict[i]])
+        #new.extend([x for x in itemlist3 if x not in test_history[i] and x not in dev_dict[i]])
+        new.extend([x for x in itemlist3 if x not in dev_dict[i]])
         dev_dict[i] = new
 
     # cold start 93명인 경우는 그냥 기존에 추천했던거랑만 안겹치게
@@ -193,11 +194,7 @@ for i in dev_dict:
 print('추천 완료')
 
     
-<<<<<<< HEAD
 f= open('data/wr.txt','w')
-=======
-f= open(path + 'inference/writer_48.txt','w')
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 rec1 =''
 for i in tqdm(test_list):
@@ -219,14 +216,11 @@ f.write(rec1)
 f.close()
 
 print('저장 완료')
-<<<<<<< HEAD
 
 
 
 f= open('data/wr.txt')
 line=f.readlines()
-pd.DataFrame(line)[0].to_csv('data/inferencefile/wr_test.csv', index=False)
+pd.DataFrame(line)[0][:20].to_csv('data/wr_test.csv', index=False)
 
 
-=======
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c

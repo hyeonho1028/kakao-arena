@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import tqdm
-
+from pytz import timezone, utc
 
 # In[2]:
 
@@ -44,7 +44,7 @@ test = pd.read_csv(path + 'test.csv')
 metadata = pd.read_json('rawdata/metadata.json', lines=True)
 magazine = pd.read_json('rawdata/magazine.json', lines=True)
 metadata = pd.merge(metadata, magazine.rename(columns={'id':'magazine_id'}), how='left', on='magazine_id')
-metadata['reg_ts'] = metadata['reg_ts'].apply(lambda x: int(datetime.datetime.fromtimestamp(x/1000).strftime('%Y%m%d')))
+metadata['reg_ts'] = metadata['reg_ts'].apply(lambda x: int(datetime.datetime.utcfromtimestamp(x/1000).strftime('%Y%m%d')))
 
 
 # metadata에 존재하는 작품만
@@ -101,11 +101,7 @@ for idx in tqdm.tqdm(range(len(test))):
 
 
 test['submit'] = test['id'] + ' ' + test['recommend'].apply(lambda x: ' '.join(x))
-<<<<<<< HEAD
-test['submit'].to_csv('data/inferencefile/march_recommend_test.csv', index=False)
-=======
-test['submit'].to_csv('data/inferencefile/recommend.csv', index=False)
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
+test['submit'].to_csv('data/march_recommend_test.csv', index=False)
 
 
 # In[7]:

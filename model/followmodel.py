@@ -29,11 +29,7 @@ pop_writer_article, new_article = js_p['pop_writer_article'] , js_p['new_article
 
 
 #######
-<<<<<<< HEAD
 users = pd.read_json('rawdata/users.json',lines=True)
-=======
-users = pd.read_json(path+'users.json',lines=True)
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 
 
@@ -102,7 +98,8 @@ for i in tqdm(dev_dict):
     new=[]
     try:
         new.extend(dev_dict[i])
-        new.extend([x for x in itemlist3 if x not in test_history[i] and x not in dev_dict[i]])
+        #new.extend([x for x in itemlist3 if x not in test_history[i] and x not in dev_dict[i]])
+        new.extend([x for x in itemlist3 if x not in dev_dict[i]])
         dev_dict[i] = new
 
     # cold start 93명인 경우는 그냥 기존에 추천했던거랑만 안겹치게
@@ -162,11 +159,7 @@ print('중복 추천 삭제완료 추천완료')
 
 
 
-<<<<<<< HEAD
 f= open('data/follow.txt','w')
-=======
-f= open(path+'recommend/follow_57.txt','w')
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 rec =''
 for i in tqdm(test_list):
@@ -191,12 +184,6 @@ print('follow model 예측파일 저장')
 
 
 
-<<<<<<< HEAD
 f= open('data/follow.txt')
 line=f.readlines()
-pd.DataFrame(line)[0].to_csv('data/inferencefile/follow_test.csv', index=False)
-=======
-f= open(path)
-line=f.readlines()
-pd.DataFrame(line).to_csv~~
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
+pd.DataFrame(line)[0].to_csv('data/follow_test.csv', index=False)

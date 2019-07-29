@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 from collections import OrderedDict
 from itertools import repeat
 import time
+from pytz import timezone, utc
 
 
 # 1. pop_writer_article.json 
@@ -36,14 +37,16 @@ import time
 # 3. recommend_57_test.txt
 
 # In[2]:
+KST = timezone('Asia/Seoul')
 
 
-<<<<<<< HEAD
+
+
 
 
 # read data
 path2 = 'rawdata/read/'
-read_file_lst = pd.read_csv('rawdata/read_data_sort.csv', header=None).[0].tolist()
+read_file_lst = pd.read_csv('rawdata/read_data_sort.csv', header=None)[0].tolist()
 exclude_file_lst = ['read.tar', '.2019010120_2019010121.un~']
 read_df_lst = []
 for f in read_file_lst:
@@ -60,11 +63,6 @@ for f in read_file_lst:
         
 read = pd.concat(read_df_lst)
 
-=======
-path = 'data/'
-read = pd.read_csv(path + 'read.csv')
-from itertools import chain
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 def chainer(s):
     return list(chain.from_iterable(s.str.split(' ')))
 read_cnt_by_user = read['article_id'].str.split(' ').map(len)
@@ -74,13 +72,10 @@ read_raw = pd.DataFrame({'dt': np.repeat(read['dt'], read_cnt_by_user),
                          'article_id': chainer(read['article_id'])})
 
 
-<<<<<<< HEAD
 read_raw2= read_raw[read_raw['article_id']!='']
 
 
 
-=======
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 # In[3]:
 
 
@@ -94,15 +89,9 @@ test_list = test['id'].values.tolist()
 
 """18_read_raw.csv 만들기"""
 
-<<<<<<< HEAD
 
 
 past_df2 = read_raw2[read_raw2.dt.astype('int32')>=20190218].sort_values(['dt', 'hr'])
-=======
-df = read_raw.copy()
-
-past_df2 = df[df.dt>=20190218]
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 author = past_df2.article_id.values.tolist()
 past_df2['author'] = [x.split('_')[0] for x in author]
 
@@ -115,11 +104,7 @@ print('data/18_read_raw.csv 생성완료')
 """all test history 만들기"""
 all_test_history={}
 
-<<<<<<< HEAD
 dp_df = read_raw2.drop(['dt','hr'],axis=1).drop_duplicates()
-=======
-dp_df = df.drop(['dt','hr'],axis=1).drop_duplicates()
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 for i in tqdm(test_list):
     all_test_history[i]=dp_df[dp_df.user_id.isin([i])].article_id.unique().tolist()
@@ -145,16 +130,14 @@ new_metadata = metadata.copy()
 
 time=[]
 
+
 for i in metadata.reg_ts:
-    time.append(int(datetime.datetime.fromtimestamp(i/1000).strftime('%Y%m%d')))
+    time.append(int(datetime.datetime.fromtimestamp(i/1000,KST).strftime('%Y%m%d')))
     
 new_metadata['time'] = time
 
-<<<<<<< HEAD
 metadata_save = new_metadata.copy()
 
-=======
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 new_metadata = new_metadata[(new_metadata.time >= 20190301)&(new_metadata.time <= 20190314)]
 author2 = new_metadata.id.values.tolist()
 new_metadata['author'] = [x.split('_')[0] for x in author2]
@@ -162,12 +145,8 @@ new_metadata['author'] = [x.split('_')[0] for x in author2]
 
 # In[5]:
 
-<<<<<<< HEAD
 df = read_raw2.copy()
 df.dt = df.dt.astype('int32')
-=======
-
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 df_22 = df[df.dt>=20190222]
 author = df_22.article_id.values.tolist()
 df_22['author'] = [x.split('_')[0] for x in author]
@@ -183,7 +162,7 @@ isin={}
 for i in metadata.id.values:
     isin[i] = 1
     
-for i in tqdm_notebook(df_22.author.unique()):
+for i in tqdm(df_22.author.unique()):
     count=Counter(df_22[df_22.author.isin([i])].article_id).most_common()
     pop_writer_article[i]=[x for x in count if x[0] in isin]
 
@@ -255,14 +234,9 @@ print('data/pop_writer_article.json 생성완료')
 
 # In[ ]:
 
-<<<<<<< HEAD
 metadata_save = metadata_save[(metadata_save['time']>=20180801) & (metadata_save['time']<20190315)]
-metadata_save.to_csv('data/inferencefile/metadata_test.csv', index=False)
-=======
-new_metadata = new_metadata[(new_metadata['time']>=20180801) & (new_metadata['time']<20190315)]
-new_metadata.to_csv('data/inferencefile/metadata_test.csv', index=False)
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
-print('data/inferencefile/metadata_test.csv 생성완료')
+metadata_save['id'].to_csv('data/metadata_test.csv', index=False)
+print('data/metadata_test.csv 생성완료')
 
 # In[ ]:
 

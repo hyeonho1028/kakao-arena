@@ -7,37 +7,26 @@
 import pandas as pd
 import numpy as np
 import os
-<<<<<<< HEAD
 import tqdm
-=======
-
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 # In[3]:
 
 
-path = 'data/inferencefile/'
+path = 'data/'
 os.listdir(path)
 
 
 # In[4]:
 
 
-<<<<<<< HEAD
-metadata = pd.read_csv(path + 'metadata_test.csv')
+metadata = pd.read_csv(path + 'metadata_test.csv', header=None)
+metadata.columns = ['id']
 
 mf = pd.read_csv('pretrained/mf_test.csv', header=None)
 march = pd.read_csv(path+ 'march_recommend_test.csv', header=None)
 follow = pd.read_csv(path + 'follow_test.csv', header=None)
 wr = pd.read_csv(path + 'wr_test.csv', header=None)
-=======
-metadata = pd.read_csv(path + 'metadata.csv')
 
-mf = pd.read_csv(path + 'mf_test.csv', header=None)
-march = pd.read_csv(path+ 'recommend_march.csv', header=None)
-follow = pd.read_csv(path + 'follow.csv', header=None)
-wr = pd.read_csv(path + 'wr.csv', header=None)
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
 
 
 
@@ -63,11 +52,7 @@ wr = cleaning(wr)
 
 
 mf['submit']=''
-<<<<<<< HEAD
 for idx in tqdm.tqdm(range(len(mf))):
-=======
-for idx in range(len(mf)):
->>>>>>> 13df0e5a71134bfffeed2e5a1ee9394db402e93c
     
     a = march.loc[idx, 'recommend']
     b = mf.loc[idx, 'recommend'][:20]
@@ -125,7 +110,7 @@ for idx in range(len(mf)):
 
 
 rec_list = np.unique([j for i in mf['submit'] for j in i])
-rec_list_market = metadata['id'][~metadata['id'].isin(rec_list)].unique()
+rec_list_market = metadata.loc[~metadata['id'].isin(rec_list), 'id'].unique()
 
 
 # In[50]:
@@ -147,7 +132,7 @@ for idx in range(len(mf)):
 dev = mf
 dev = dev.drop(columns=['recommend']).rename(columns={'submit':'recommend'})
 dev['submit'] = dev['id'] + ' ' + dev['recommend'].apply(lambda x: ' '.join(x))
-dev['submit'].to_csv('data/inference/recommend.csv', index=False)
+dev['submit'].to_csv('inference/recommend.csv', index=False, header=False)
 
 
 print('100개가 완벽히 추천된 아이템 개수 : {} \n추천된 item의 unique개수 : {} - entropy와 밀접한 관련'.format(

@@ -1,5 +1,6 @@
 # Description
-<<<<<<< HEAD
+#### path
+
 ```
 ​```bash
 .
@@ -12,8 +13,7 @@
 │   ├── magazine.json
 │   ├── metadata.json
 │   ├── users.json
-│   ├── read_data_sort.csv(압축을 푸는 과정에서 파일 순서가 자동으로 섞이는데, 
-│   │                       파일 순서를 보존하기 위해 sort를 저장했습니다.)
+│   ├── read_data_sort.csv(압축을 푸는 과정에서 파일 순서가 자동으로 섞이는데, 파일 순서를 보존하기 위해 sort를 저장했습니다.)
 │   └── 0222_0301_1000_recommend.txt(카카오 기본 추천 파일)
 ├── pretrained
 │   └── mf_test.csv
@@ -33,7 +33,7 @@ https://github.com/kakao-arena/brunch-article-recommendation
 
    
 
-#### mf_test.csv
+#### mf_test.csv(pre-trained model)
 
 ```
 mf model output
