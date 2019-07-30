@@ -70,7 +70,7 @@ inference/recommend.txt
 
 ## 모델 설명
 
-- popular
-- sdf
-- march model
+- follow based popular
+- article based model
+- march focus model
 - mf model
