@@ -31,6 +31,7 @@ $> python mostpopular.py —from-dtm 2019022200 —to-dtm 2019030100 recommend .
 https://github.com/kakao-arena/brunch-article-recommendation
 
 modify - Insert using code
+         mostpopular.py : topn=100 -> topn=1000
 ```
 
    
