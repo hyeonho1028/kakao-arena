@@ -26,8 +26,8 @@
 #### 0222_0301_1000_recommend.txt(카카오 기본 추천 파일)
 
 ```
-$> python mostpopular.py --from-dtm 2019020100 --to-dtm 2019030100 recommend ./res/predict/dev.users recommend.txt
-
+$> python mostpopular.py --from-dtm 2019020100 --to-dtm 2019030100 recommend ./res/predict/dev.users recommend.txt -> 카카오에서 제공한 방법
+$> python mostpopular.py —from-dtm 2019022200 —to-dtm 2019030100 recommend ./res/predict/dev.users recommend.txt -> using code
 https://github.com/kakao-arena/brunch-article-recommendation
 ```
 
