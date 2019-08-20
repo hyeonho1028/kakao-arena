@@ -51,7 +51,7 @@ print(' data load 완료')
 
 
 users_follow=users[users.id.isin(pd.Series(test_list))]
-
+users_follow = users_follow[['following_list','id']]
 dev_dict={}
 error={}
 
