@@ -5,7 +5,7 @@
 #### - kakao arena homepage : https://arena.kakao.com/c/2
 #
 #
-#
+
 # Description
 #### path
 
@@ -53,7 +53,7 @@ https://www.kaggle.com/hyeonho/mf-based-popular
 ```
 #
 #
-#
+
 
 ## Example of usage
 ```
@@ -76,7 +76,7 @@ inference/recommend.txt
 ```
 #
 #
-#
+
 
 ## Model description
 
@@ -87,7 +87,7 @@ inference/recommend.txt
 
 #
 #
-#
+
 
 ## Requirements
 
