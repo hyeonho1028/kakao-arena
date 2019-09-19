@@ -44,10 +44,10 @@ modify - Insert using code
 
 #   
 
-#### mf_test.csv(pre-trained model)
+#### nmf_test.csv(pre-trained model)
 
 ```
-mf model output
+nmf model output
 
 https://www.kaggle.com/hyeonho/mf-based-popular
 ```
@@ -83,7 +83,7 @@ inference/recommend.txt
 - follow based popular
 - article based model
 - march focus model
-- mf model
+- nmf model
 
 #
 #
