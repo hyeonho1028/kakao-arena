@@ -3,7 +3,9 @@
 #### - 3rd rema팀의 brunch recommendation code(leaderboard 5th)
 #### - kakao base code : https://github.com/kakao-arena/brunch-article-recommendation
 #### - kakao arena homepage : https://arena.kakao.com/c/2
-
+#
+#
+#
 # Description
 #### path
 
@@ -27,7 +29,7 @@
 ​```
 ```
 
-
+#
 
 #### 0222_0301_1000_recommend.txt(카카오 기본 추천 파일)
 
@@ -40,7 +42,7 @@ modify - Insert using code
          mostpopular.py : topn=100 -> topn=1000
 ```
 
-   
+#   
 
 #### mf_test.csv(pre-trained model)
 
@@ -49,9 +51,9 @@ mf model output
 
 https://www.kaggle.com/hyeonho/mf-based-popular
 ```
-
-
-
+#
+#
+#
 
 ## Example of usage
 ```
@@ -72,8 +74,9 @@ $> python inference.py
 inference/recommend.txt
 ​```
 ```
-
-
+#
+#
+#
 
 ## Model description
 
@@ -81,6 +84,10 @@ inference/recommend.txt
 - article based model
 - march focus model
 - mf model
+
+#
+#
+#
 
 ## Requirements
 
