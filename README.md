@@ -71,9 +71,16 @@ inference/recommend.txt
 
 
 
-## 모델 설명
+## Model description
 
 - follow based popular
 - article based model
 - march focus model
 - mf model
+
+## Requirements
+
+- python 3.6
+- numpy 1.16
+- pandas 0.24.2
+- tqdm 4.32.1
