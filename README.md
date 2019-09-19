@@ -55,7 +55,7 @@ https://www.kaggle.com/hyeonho/mf-based-popular
 #
 
 
-## Example of usage
+# Example of usage
 ```
 ​```bash
 default directory
@@ -78,7 +78,7 @@ inference/recommend.txt
 #
 
 
-## Model description
+# Model description
 
 - follow based popular
 - article based model
@@ -89,7 +89,7 @@ inference/recommend.txt
 #
 
 
-## Requirements
+# Requirements
 
 - python 3.6
 - numpy 1.16
