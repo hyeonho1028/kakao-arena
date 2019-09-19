@@ -4,7 +4,7 @@
 #### - kakao base code : https://github.com/kakao-arena/brunch-article-recommendation
 #### - kakao arena homepage : https://arena.kakao.com/c/2
 #
-#
+
 
 # Description
 #### path
@@ -52,7 +52,7 @@ nmf model output
 https://www.kaggle.com/hyeonho/mf-based-popular
 ```
 #
-#
+
 
 
 ## Example of usage
@@ -75,7 +75,7 @@ inference/recommend.txt
 ​```
 ```
 #
-#
+
 
 
 ## Model description
@@ -86,7 +86,7 @@ inference/recommend.txt
 - nmf model
 
 #
-#
+
 
 
 ## Requirements
