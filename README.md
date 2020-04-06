@@ -1,4 +1,4 @@
-# Kakao arena 2nd Competition
+# Kakao arena 2nd Competition_test
 ### "브런치 사용자를 위한 글 추천 대회"
 ##### - 3rd rema팀의 brunch recommendation code(leaderboard 5th)
 ##### - kakao base code : https://github.com/kakao-arena/brunch-article-recommendation
