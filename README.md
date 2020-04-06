@@ -1,3 +1,10 @@
+# Kakao arena 2nd Competition_test
+### "브런치 사용자를 위한 글 추천 대회"
+##### - 3rd rema팀의 brunch recommendation code(leaderboard 5th)
+##### - kakao base code : https://github.com/kakao-arena/brunch-article-recommendation
+##### - kakao arena homepage : https://arena.kakao.com/c/2
+
+
 # Description
 #### path
 
@@ -34,22 +41,19 @@ modify - Insert using code
          mostpopular.py : topn=100 -> topn=1000
 ```
 
-   
+  
 
-#### mf_test.csv(pre-trained model)
+#### nmf_test.csv(pre-trained model)
 
 ```
-mf model output
+nmf model output
 
 https://www.kaggle.com/hyeonho/mf-based-popular
 ```
 
 
-
-
-
+## Example of usage
 ```
-## **실행 방법**
 ​```bash
 default directory
 ./kakao-arena/
@@ -61,13 +65,13 @@ $> python inference.py
 ```
 
 
-
 ```
-## **최종 결과물**
+## **final output**
 ​```bash
 inference/recommend.txt
 ​```
 ```
+
 
 
 
@@ -76,7 +80,9 @@ inference/recommend.txt
 - follow based popular
 - article based model
 - march focus model
-- mf model
+- nmf model
+
+
 
 ## Requirements
 
